@@ -5,6 +5,7 @@ var recognition = new SpeechRecognition();
 function start(){
     document.getElementById("text_box").innerHTML ="";
 recognition.start();
+
 }
 recognition.onresult= function(event){
     console.log(event);
@@ -13,11 +14,13 @@ recognition.onresult= function(event){
     console.log(content);
 
     document.getElementById("text_box").innerHTML = content;
-    speak();
+    if(content == "take my selfie"){
+        speak();
+    }
 }
 function speak(){
     var synth = window.speechSynthesis;
-    speak_data = document.getElementById("text_box").innerHTML;
+    speak_data = "taking your selfie in 5 seconds";
     var utterThis = new SpeechSynthesisUtterance(speak_data);
     synth.speak(utterThis);
     Webcam.attach("#camera");
